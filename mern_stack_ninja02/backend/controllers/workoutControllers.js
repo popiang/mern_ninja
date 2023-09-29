@@ -38,6 +38,29 @@ exports.getWorkout = async (req, res) => {
 };
 
 exports.createWorkout = async (req, res) => {
+    const { title, reps, load } = req.body;
+    let emptyFields = [];
+
+    if (!title) {
+        emptyFields.push("title");
+    }
+
+    if (!load) {
+        emptyFields.push("load");
+    }
+
+    if (!reps) {
+        emptyFields.push("reps");
+    }
+
+    if (emptyFields.length > 0) {
+        return res.status(400).json({
+            status: "Fail",
+            message: "Please fill in all the fields",
+            emptyFields,
+        });
+    }
+
     try {
         const workout = await Workout.create(req.body);
 
@@ -65,8 +88,6 @@ exports.deleteWorkout = async (req, res) => {
 
     const deletedWorkout = await Workout.findByIdAndDelete(req.params.id);
 
-    console.log(deletedWorkout);
-
     if (!deletedWorkout) {
         return res.status(400).json({
             status: "Fail",
@@ -74,7 +95,7 @@ exports.deleteWorkout = async (req, res) => {
         });
     }
 
-    res.status(204).json({
+    res.status(200).json({
         status: "success",
         message: "workout deleted",
         data: {
