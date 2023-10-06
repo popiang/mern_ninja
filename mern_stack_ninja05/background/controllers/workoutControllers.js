@@ -53,7 +53,7 @@ exports.createWorkout = async (req, res) => {
     }
 
     if (emptyFields.length > 0) {
-        return res.status(200).json({
+        return res.status(400).json({
             status: "Fail",
             message: "Please in the required fields",
             data: {
