@@ -2,10 +2,13 @@ const { default: mongoose } = require("mongoose");
 const Workout = require("../models/workoutModel");
 
 exports.getAllWorkouts = async (req, res) => {
-    const workouts = await Workout.find().sort({ createdAt: -1 });
+    const user_id = req.user._id;
+    const workouts = await Workout.find({ user_id }).sort({
+        createdAt: -1,
+    });
 
     res.status(200).json({
-        status: "success",
+        status: "Success",
         data: {
             workouts,
         },
@@ -62,7 +65,8 @@ exports.createWorkout = async (req, res) => {
     }
 
     try {
-        const workout = await Workout.create(req.body);
+        const user_id = req.user._id;
+        const workout = await Workout.create({ title, load, reps, user_id });
 
         res.status(200).json({
             status: "success",
