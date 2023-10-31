@@ -26,4 +26,25 @@ steps
 	- in controller, use the static login function
 	- create token
 	- return token in response
-
+9. login & signup page
+	- create both in pages folder
+	- create standard form with email & password as input
+	- console log the email and password when submitted
+	- add routes in app.js
+	- add link in navbar
+	- add style for the forms and navbar
+10. useSignup
+	- create custom hook useSignup
+	- create state for error and isLoading
+	- call useAuthContext to get dispatch
+	- create signup function
+		- call signup using fetch
+		- if response not ok, set error 
+		- if response ok, save json to localstorage and update auth context
+	- return signup, isLoading & error
+11. useLogout
+	- create custom hook useLogout
+	- import useAuthContext and get the dispatch function
+	- create logout function
+	- remove use in localstorage
+	- call dispatch with type LOGOUT

@@ -6,6 +6,7 @@ const createToken = (_id) => {
 };
 
 exports.signup = async (req, res) => {
+	console.log("masuk signup");
     const { email, password } = req.body;
 
     try {
@@ -15,7 +16,6 @@ exports.signup = async (req, res) => {
         const token = createToken(user._id);
 
         res.status(200).json({
-            status: "Success",
 			email: email,
             token: token,
         });
@@ -37,7 +37,6 @@ exports.login = async (req, res) => {
         const token = createToken(user._id);
 
         res.status(200).json({
-            status: "Success",
 			email: email,
             token: token,
         });
