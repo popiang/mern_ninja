@@ -48,3 +48,4 @@ steps
 	- create logout function
 	- remove use in localstorage
 	- call dispatch with type LOGOUT
+	- return the logout function

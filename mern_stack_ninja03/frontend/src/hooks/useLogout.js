@@ -4,10 +4,10 @@ export const useLogout = () => {
     const { dispatch } = useAuthContext();
 
     const logout = () => {
-        // remove user from storage
+        //* remove user from storage
         localStorage.removeItem("user");
 
-        // dispatch logout action
+        //* dispatch logout action
         dispatch({ type: "LOGOUT" });
     };
 
