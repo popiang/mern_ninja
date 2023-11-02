@@ -49,3 +49,24 @@ steps
 	- remove use in localstorage
 	- call dispatch with type LOGOUT
 	- return the logout function
+12. useLogin
+	- create useLogin hook, pretty similar with useSignup
+	- use it in Login page as usual
+13. set initial auth status
+	- in navbar import useAuthContext and get the user
+	- display user email next to logout button
+	- conditionally display login & signup and email and logout using user
+	- in authContext, use useEffect to get user in localStorage and JSON.parse it
+	- if got user, dispatch LOGIN
+14. protecting api routes
+	- in backend, create middleware folder and create requireAuth middleware file
+	- get authorization from req.headers, check if not available send 401 response
+	- get the token from authorization using split function
+	- require jwt, try catch, using jwt.verify and get the _id
+	- require User, findOne using _id, and select only _id
+	- call next
+	- if error, send 401 response
+	- export requireAuth
+	- require in workoutRoutes, call it in router.use
+	- try using postman
+15. making authorized requests
