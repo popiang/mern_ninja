@@ -70,3 +70,25 @@ steps
 	- require in workoutRoutes, call it in router.use
 	- try using postman
 15. making authorized requests
+	- add authorization headers in Home, WorkoutForm and WorkoutDetails
+	- authorization: `Bearer user.token`
+	- add useAuthContext to get user to get user.token
+	- in Home
+		- check if user exist only then call fetchWorkout
+		- in fetchWorkout,add Authorization in headers in fetch
+	- in WorkoutForm
+		- check if user not exist, setError and then just return, so the rest of the code will not be executed
+		- add authorization in headers
+	- in WorkoutDetails
+		- add in authorizatio in headers
+		- check user in handle click before fetch, if user is not exist simply return
+16. protecting react routes
+	- import Navigate from react-router-dom to redirect user, use to be Redirect, Navigate is newer
+	- import useAuthContext to get user
+	- check user in the 3 routes to display components accordingly, if not use navigate to redirect accordingly
+17. assign workout to user
+	- delete all workouts first
+	- add user_id in workoutSchema type string
+	
+
+

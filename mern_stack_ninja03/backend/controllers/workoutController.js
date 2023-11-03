@@ -63,7 +63,8 @@ exports.createWorkout = async (req, res) => {
     }
 
     try {
-        const workout = await Workout.create(req.body);
+        const user_id = req.user._id;
+        const workout = await Workout.create({ ...req.body, user_id });
 
         res.status(200).json({
             status: "Success",
