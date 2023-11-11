@@ -89,6 +89,12 @@ steps
 17. assign workout to user
 	- delete all workouts first
 	- add user_id in workoutSchema type string
+	- in workout controller, add user id when create a workout
+	- user id is available in req as we have added it in requireAuth middleware upon successfull authentication
+	- now during get all workouts, do the same. get the user id in req, send it in the query
+	- then, during logout, we remove the current workouts in the context
+	- so in useLogout, we call useWorkoutContext and use dispatch with the type set workouts to set the workouts to null
+	- the reason is so that we will not see flashes of workouts of the previous user when we log in
 	
 
 
