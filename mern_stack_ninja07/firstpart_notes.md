@@ -1,4 +1,4 @@
- # backend
+# backend
 1. create backend folder
 2. npm init -y
 3. create server.js file
@@ -34,7 +34,7 @@
    - create folder controllers and create workoutController.js file
    - require Workout model and mongoose
    - create controllers for getAllWorkouts, getAWorkout, createWorkout, updateAWorkout, deleteAWorkout
-   - add all the required
+   - add all the required validations
    - export all the workouts
    - require all the controllers in workout routes file
    - put all the controllers in all the routes
@@ -96,6 +96,7 @@
 	 - if reponse not ok, set errror
 	 - if response ok, reset all states and console.log
    - add css styles
+   - import WorkoutForm in Home.js and add after workout div
    - test 
 10. add react context
    - create context folder and create WorkoutContext.js
@@ -154,6 +155,6 @@
 13. final touches
    - use google icon to get trash can and put the link in the index.html
    - in the delete span, add class name 'material-symbols-outline'
-   - for the date, install date-nfs and import formatDistanceToNow in WorkoutDetails
+   - for the date, install date-fns and import formatDistanceToNow in WorkoutDetails
    - use formatDistanceToNow function to display the date
      - new Date(workout.createdAt), {addSuffix: true}
