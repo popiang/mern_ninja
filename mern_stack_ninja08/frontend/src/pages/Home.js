@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useWorkoutContext } from "../hooks/useWorkoutsContext";
 
 // components
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
 
 function Home() {
-    const [workouts, setWorkouts] = useState([]);
+    const { workouts, dispatch } = useWorkoutContext();
 
     useEffect(() => {
         try {
@@ -15,8 +16,12 @@ function Home() {
                     redirect: "follow",
                 });
                 const json = await response.json();
+                console.log(json.data.workouts);
                 if (response.ok) {
-                    setWorkouts(json.data.workouts);
+                    dispatch({
+                        type: "SET_WORKOUTS",
+                        payload: json.data.workouts,
+                    });
                 }
             };
             fetchWorkout();
@@ -24,7 +29,7 @@ function Home() {
             console.log("masuk error");
             console.log(error.message);
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="home">

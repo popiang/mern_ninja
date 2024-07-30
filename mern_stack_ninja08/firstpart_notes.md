@@ -154,7 +154,7 @@
    - in css stylesheet, add the css style
 13. final touches
    - use google icon to get trash can and put the link in the index.html
-   - in the delete span, add class name 'material-symbols-outline'
+   - in the delete span, add class name 'material-symbols-outlined'
    - for the date, install date-fns and import formatDistanceToNow in WorkoutDetails
    - use formatDistanceToNow function to display the date
      - new Date(workout.createdAt), {addSuffix: true}
