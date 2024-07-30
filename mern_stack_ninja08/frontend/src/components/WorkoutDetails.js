@@ -1,6 +1,6 @@
 function WorkoutDetails({ workout }) {
     return (
-        <div className="workout=details">
+        <div className="workout-details">
             <h4>{workout.title}</h4>
             <p>
                 <strong>Load (kg): </strong>
