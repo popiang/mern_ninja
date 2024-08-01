@@ -1,41 +1,16 @@
-const express =require("express");
+const express = require("express");
+const workoutController = require("../controllers/workoutController");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-	console.log("masuk get all workouts!!");
-	res.status(200).json({
-		status: "Success",
-		message: "Get all workouts"
-	})
-});
+router.get("/", workoutController.getAllWorkouts);
 
-router.get("/:id", (req, res) => {
-    res.status(200).json({
-        status: "Success",
-        message: "Get a single workout",
-    });
-});
+router.get("/:id", workoutController.getWorkout);
 
-router.post("/", (req, res) => {
-    res.status(200).json({
-        status: "Success",
-        message: "Create a workout",
-    });
-});
+router.post("/", workoutController.createWorkout);
 
-router.patch("/:id", (req, res) => {
-    res.status(200).json({
-        status: "Success",
-        message: "Update a workout",
-    });
-});
+router.patch("/:id", workoutController.updateWorkout);
 
-router.delete("/:id", (req, res) => {
-    res.status(200).json({
-        status: "Success",
-        message: "Delete a workout",
-    });
-});
+router.delete("/:id", workoutController.deleteWorkout);
 
 module.exports = router;
