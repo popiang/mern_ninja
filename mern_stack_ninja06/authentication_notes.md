@@ -1,17 +1,25 @@
 # steps
 1. create route
+   - login & sign up, empty function at the moment
 2. create controller
+   - login & sign up, basic response at the moment
+   - hook it to the user router
 3. bring routes to server.js
 4. create model for user
-5. create static method for signup in user
-	- validate input
-	- check if user already exist
-	- install bcrypt and hash the password
-	- save user
+	- hook it to user controller 
+	- create login and signup api in postman to test 
+5. create static method for signup in User
+	- check if user already exist, throw error if yes
+	- install bcrypt 
+	- generate salt and hash the password
+	- create user and return user
+	- in user controller, use the signup function to create user
+	- test in postman
 6. install validator and do validation
 	- check if email and password are provided
 	- check if email is valid using validator
 	- check if password is strong enough using validator
+	- test
 7. jwt
 	- install jsonwebtoken, require in controller
 	- create a function to generate the token
