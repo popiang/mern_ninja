@@ -115,7 +115,7 @@
 	- import Navigate from react-router-dom to redirect user, use to be Redirect, Navigate is newer
 	- import useAuthContext to get user
 	- check user in the 3 routes to display components accordingly, if not use navigate to redirect accordingly
-17. assign workout to user
+18. assign workout to user
 	- delete all workouts first
 	- add user_id in workoutSchema type string and required
 	- in workout controller, add user id when create a workout
