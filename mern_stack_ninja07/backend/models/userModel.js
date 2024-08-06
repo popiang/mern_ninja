@@ -19,32 +19,31 @@ const userSchema = new Schema(
 );
 
 userSchema.statics.signup = async function (email, password) {
+    // validation
+    if (!email || !password) {
+        throw Error("Email and password are required");
+    }
 
-	// validation
-	if (!email || !password) {
-		throw Error("Email and password are required");
-	}
+    if (!validator.isEmail(email)) {
+        throw Error("Invalid email address");
+    }
 
-	if (!validator.isEmail(email)) {
-		throw Error("Invalid email address");
-	}
+    if (!validator.isStrongPassword(password)) {
+        throw Error("Password is not strong enough");
+    }
 
-	if (!validator.isStrongPassword(password)) {
-		throw Error("Password is not strong enough");
-	}
+    const exists = await this.findOne({ email });
 
-	const exists = await this.findOne({email});
+    if (exists) {
+        throw Error("The email has already been used");
+    }
 
-	if (exists) {
-		throw Error("The email has already been used")
-	}
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
+    const user = await this.create({ email, password: hash });
 
-	const salt = await bcrypt.genSalt(10);
-	const hash = await bcrypt.hash(password, salt);
-	const user = await this.create({email, password: hash});
-
-	return user;
-}
+    return user;
+};
 
 userSchema.statics.login = async function (email, password) {
     // validation
@@ -52,19 +51,19 @@ userSchema.statics.login = async function (email, password) {
         throw Error("Email and password are required");
     }
 
-	const user = await this.findOne({ email });
+    const user = await this.findOne({ email });
 
     if (!user) {
         throw Error("Incorrect email or password");
     }
 
-	const match = await bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, user.password);
 
-	if (!match) {
-		throw Error("Incorrect email or password")
-	}
+    if (!match) {
+        throw Error("Incorrect email or password");
+    }
 
-	return user;
-}
+    return user;
+};
 
 module.exports = mongoose.model("User", userSchema);
