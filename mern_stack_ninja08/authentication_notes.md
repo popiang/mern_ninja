@@ -17,6 +17,7 @@
 	- in user controller, use the signup function to create user
 	- test in postman
 6. install validator and do validation
+    - use validator in user model file
 	- check if email and password are provided
 	- check if email is valid using validator
 	- check if password is strong enough using validator
