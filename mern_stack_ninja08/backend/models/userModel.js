@@ -16,6 +16,7 @@ const userSchema = new Schema({
 });
 
 userSchema.statics.signup = async function (email, password) {
+	console.log(email, password)
     if (!email || !password) {
         console.log("masuk");
         throw Error("Email and password are required");
