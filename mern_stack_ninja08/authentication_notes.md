@@ -38,10 +38,7 @@
 	- if match, return user
 	- in controller, use the static login function
 	- create token
-	- return token in response
-
-
-	
+	- return token in response	
 9. in the frontend, create AuthContext for LOGIN and LOGOUT 
    and then create the useAuthContext
 10. login & signup page

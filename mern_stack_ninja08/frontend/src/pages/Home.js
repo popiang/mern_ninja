@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 // components
 import WorkoutDetails from "../components/WorkoutDetails";
@@ -7,6 +8,7 @@ import WorkoutForm from "../components/WorkoutForm";
 
 function Home() {
     const { workouts, dispatch } = useWorkoutContext();
+    const { user } = useAuthContext();
 
     useEffect(() => {
         try {
@@ -14,9 +16,11 @@ function Home() {
                 const response = await fetch("/api/workouts", {
                     method: "GET",
                     redirect: "follow",
+                    headers: {
+                        authorization: `Bearer ${user.token}`,
+                    },
                 });
                 const json = await response.json();
-                console.log(json.data.workouts);
                 if (response.ok) {
                     dispatch({
                         type: "SET_WORKOUTS",
@@ -24,12 +28,13 @@ function Home() {
                     });
                 }
             };
-            fetchWorkout();
+            if (user) {
+                fetchWorkout();
+            }
         } catch (error) {
-            console.log("masuk error");
             console.log(error.message);
         }
-    }, [dispatch]);
+    }, [dispatch, user]);
 
     return (
         <div className="home">

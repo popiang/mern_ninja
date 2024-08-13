@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { useWorkoutContext } from "../hooks/useWorkoutsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function WorkoutForm() {
     const [title, setTitle] = useState("");
     const [load, setLoad] = useState("");
     const [reps, setReps] = useState("");
     const [error, setError] = useState(null);
-	const {dispatch} = useWorkoutContext();
-	const [emptyFields, setEmptyFields] = useState([]);
+    const { dispatch } = useWorkoutContext();
+    const [emptyFields, setEmptyFields] = useState([]);
+    const { user } = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!user) {
+            setError("You have to be logged in");
+            return;
+        }
 
         const workout = { title, load, reps };
 
@@ -19,6 +26,7 @@ function WorkoutForm() {
             body: JSON.stringify(workout),
             headers: {
                 "Content-Type": "application/json",
+                authorization: `Bearer ${user.token}`,
             },
         });
 
@@ -26,16 +34,16 @@ function WorkoutForm() {
 
         if (!response.ok) {
             setError(json.message);
-			setEmptyFields(json.data);
+            setEmptyFields(json.data);
         }
 
         if (response.ok) {
-			dispatch({type: "CREATE_WORKOUT", payload: json.data})
+            dispatch({ type: "CREATE_WORKOUT", payload: json.data });
             setTitle("");
             setLoad("");
             setReps("");
             setError(null);
-			setEmptyFields([]);
+            setEmptyFields([]);
             console.log("New workout added!!");
         }
     };
