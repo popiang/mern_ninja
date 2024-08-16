@@ -5,6 +5,9 @@
    - login & sign up, basic response at the moment
    - hook it to the user router
 3. bring routes to server.js
+
+-------
+
 4. create model for user
 	- hook it to user controller 
 	- create login and signup api in postman to test 
