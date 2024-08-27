@@ -5,9 +5,6 @@
    - login & sign up, basic response at the moment
    - hook it to the user router
 3. bring routes to server.js
-
--------
-
 4. create model for user
 	- hook it to user controller 
 	- create login and signup api in postman to test 
@@ -128,4 +125,5 @@
 	- so in useLogout, we call useWorkoutContext and use dispatch with the type set workouts to set the payload to null
 	- the reason is so that we will not see flashes of workouts of the previous user when we log in
 	
+
 
