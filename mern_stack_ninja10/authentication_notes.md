@@ -37,7 +37,7 @@
 	- in controller, use the static login function
 	- create token
 	- return token in response
-9. in the frontend, create userContext for LOGIN and LOGOUT 
+9. in the frontend, create authContext for LOGIN and LOGOUT 
    and then create the useAuthContext
 10. login & signup page
 	- create both in pages folder
